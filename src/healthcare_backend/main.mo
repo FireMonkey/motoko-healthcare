@@ -4,6 +4,7 @@ import Nat "mo:base/Nat";
 import Iter "mo:base/Iter";
 import Text "mo:base/Text";
 import Bool "mo:base/Bool";
+import Array "mo:base/Array";
 
 actor Assistant {
 
@@ -50,6 +51,56 @@ actor Assistant {
     nextPersonId += 1;
     return id;
   };
+
+  public query func getDiseaseHistories(personId : Nat) : async [DiseaseHistory] {
+    // Assuming diseaseHistories is a collection that supports .vals() yielding DiseaseHistory
+    // and DiseaseHistory has a field personId of type Nat.
+
+    // Convert the values to an array first if you want to work with an array,
+    // but for filtering, you can directly use Iter.filter on the iterator.
+    let histories = diseaseHistories.vals(); // Getting an iterator over the values
+
+    // Use Iter.filter to directly filter the histories based on personId
+    let filteredHistories = Iter.toArray(
+      Iter.filter(
+        histories,
+        func(history : DiseaseHistory) : Bool {
+          history.personId == personId;
+        },
+      )
+    );
+
+    return filteredHistories;
+  };
+
+  // public query func getDiseaseHistories(personId : Nat) : async [DiseaseHistory] {
+  //   // let historyArray = Iter.toArray(diseaseHistories.vals());
+  //   // return Iter.filter(
+  //   //   historyArray,
+  //   //   func(history : DiseaseHistory) : Bool {
+  //   //     history.personId == personId;
+  //   //   },
+  //   // );
+  //   // return Iter.filter(
+  //   //   historyArray,
+  //   //   func(history : DiseaseHistory) : Bool {
+  //   //     history.personId == personId;
+  //   //   },
+  //   // );
+  //   var emptyHistoryArray : [DiseaseHistory] = [];
+
+  //   // var array : [DiseaseHistory] = Array.init<DiseaseHistory>(4, null);
+
+  //   // let array = Array.init<Nat>(4, 2);
+  //   // type List<DiseaseHistory> var resultList = <DiseaseHistory>(0, Nat.equal, natHash);
+  //   for (history : DiseaseHistory in diseaseHistories.vals()) {
+  //     if (history.personId == personId) {
+  //       emptyHistoryArray := emptyHistoryArray # [history];
+  //     };
+  //   };
+  //   return array;
+
+  // };
 
   // public query func getDiseaseHistories(personId : Nat) : async [DiseaseHistory] {
   //   // var list = Iter.toArray(diseaseHistories.vals());
