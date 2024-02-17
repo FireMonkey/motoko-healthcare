@@ -73,48 +73,6 @@ actor Assistant {
     return filteredHistories;
   };
 
-  // public query func getDiseaseHistories(personId : Nat) : async [DiseaseHistory] {
-  //   // let historyArray = Iter.toArray(diseaseHistories.vals());
-  //   // return Iter.filter(
-  //   //   historyArray,
-  //   //   func(history : DiseaseHistory) : Bool {
-  //   //     history.personId == personId;
-  //   //   },
-  //   // );
-  //   // return Iter.filter(
-  //   //   historyArray,
-  //   //   func(history : DiseaseHistory) : Bool {
-  //   //     history.personId == personId;
-  //   //   },
-  //   // );
-  //   var emptyHistoryArray : [DiseaseHistory] = [];
-
-  //   // var array : [DiseaseHistory] = Array.init<DiseaseHistory>(4, null);
-
-  //   // let array = Array.init<Nat>(4, 2);
-  //   // type List<DiseaseHistory> var resultList = <DiseaseHistory>(0, Nat.equal, natHash);
-  //   for (history : DiseaseHistory in diseaseHistories.vals()) {
-  //     if (history.personId == personId) {
-  //       emptyHistoryArray := emptyHistoryArray # [history];
-  //     };
-  //   };
-  //   return array;
-
-  // };
-
-  // public query func getDiseaseHistories(personId : Nat) : async [DiseaseHistory] {
-  //   // var list = Iter.toArray(diseaseHistories.vals());
-  // };
-
-  // private query func GetDiFilter(list : [DiseaseHistory], personId : Nat) : async [DiseaseHistory] {
-  //   return Iter.filter(
-  //     list,
-  //     func(history : DiseaseHistory) : Bool {
-  //       history.personId == personId;
-  //     },
-  //   );
-  // };
-
   public func addToDiseaseHistories(personId : Nat, date : Text, description : Text, image : Text, isHealed : Bool) : async Nat {
     let id = nextDiseaseHistoryId;
     diseaseHistories.put(id, { personId = personId; date = date; description = description; image = image; isHealed = isHealed });
