@@ -51,14 +51,18 @@ actor Assistant {
     return id;
   };
 
-  public query func getDiseaseHistories(personId : Nat) : async [DiseaseHistory] {
-    return Iter.filter(
-      Iter.toArray(diseaseHistories.vals()),
-      fun(history : DiseaseHistory) : Bool {
-        history.personId == personId;
-      },
-    );
-  };
+  // public query func getDiseaseHistories(personId : Nat) : async [DiseaseHistory] {
+  //   // var list = Iter.toArray(diseaseHistories.vals());
+  // };
+
+  // private query func GetDiFilter(list : [DiseaseHistory], personId : Nat) : async [DiseaseHistory] {
+  //   return Iter.filter(
+  //     list,
+  //     func(history : DiseaseHistory) : Bool {
+  //       history.personId == personId;
+  //     },
+  //   );
+  // };
 
   public func addToDiseaseHistories(personId : Nat, date : Text, description : Text, image : Text, isHealed : Bool) : async Nat {
     let id = nextDiseaseHistoryId;
