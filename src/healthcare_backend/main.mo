@@ -53,14 +53,8 @@ actor Assistant {
   };
 
   public query func getDiseaseHistories(personId : Nat) : async [DiseaseHistory] {
-    // Assuming diseaseHistories is a collection that supports .vals() yielding DiseaseHistory
-    // and DiseaseHistory has a field personId of type Nat.
+    let histories = diseaseHistories.vals();
 
-    // Convert the values to an array first if you want to work with an array,
-    // but for filtering, you can directly use Iter.filter on the iterator.
-    let histories = diseaseHistories.vals(); // Getting an iterator over the values
-
-    // Use Iter.filter to directly filter the histories based on personId
     let filteredHistories = Iter.toArray(
       Iter.filter(
         histories,
